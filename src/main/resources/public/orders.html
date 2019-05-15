@@ -1,0 +1,109 @@
+<!DOCTYPE>
+<html>
+<head>
+<title></title>
+<!-- Include one of jTable styles. -->
+<link href="css/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+<!-- Include jTable script file. -->
+<script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
+<script src="js/jquery.jtable.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#orderContainer').jtable({
+			title : 'Orders',
+			actions : {
+				listAction : 'OrderController/orders'
+			},
+			fields : {
+				id : {
+					title : 'Id',
+					width : '30%',
+					key : true,
+					list : true,
+					edit : false,
+					create : false
+				},
+				totalBill : {
+					title : 'Total',
+					width : '30%',
+					edit : true
+				},
+				customerId : {
+					title : 'Customer',
+					width : '30%',
+					edit : true
+				},
+				orderDate : {
+					title : 'Order Date',
+					width : '30%',
+					edit : true
+				},
+				Details: {
+                    title: '',
+                    width: '5%',
+                    sorting: false,
+                    edit: false,
+                    create: false,
+                    display: function (orderData) {
+                        //Create an image that will be used to open child table
+                        var $img = $('<img src="/Content/images/Misc/phone.png" title="Details" />');
+                        //Open child table when user clicks the image
+                        $img.click(function () {
+                            $('#orderContainer').jtable('openChildTable',
+                                    $img.closest('tr'),
+                                    {
+                                        title: orderData.record.id + ' - Order Details',
+                                        actions: {
+                                            listAction: 'OrderDetailsController/orderDetails/' + orderData.record.id
+                                        },
+                                        fields: {
+                                            id: {
+                                                key: true,
+                                                create: false,
+                                                edit: false,
+                                                list: false
+                                            },
+                                            orderId: {
+                                                title: 'Order Id',
+                                                width: '30%'
+                                            },
+                                            dishId: {
+                                                title: 'Dish Id',
+                                                width: '30%'
+                                            },
+											quantity: {
+                                                title: 'Quantity',
+                                                width: '30%'
+                                            },
+											subTotal: {
+                                                title: 'Sub Total',
+                                                width: '30%'
+                                            }
+                                        }
+                                    }, function (data) { //opened handler
+                                        data.childTable.jtable('load');
+                                    });
+                        });
+                        //Return image to show on the person row
+                        return $img;
+                    }
+                }
+				
+			}
+		});
+		$('#orderContainer').jtable('load');
+	});
+</script>
+
+</head>
+<body>
+<div style="width: 80%; margin-right: 10%; margin-left: 10%; text-align: center;">
+
+		<!-- <h4>AJAX based CRUD operations using jTable in J2ee</h4> -->
+		<div id="orderContainer"></div>
+	</div>
+</body>
+</html>
