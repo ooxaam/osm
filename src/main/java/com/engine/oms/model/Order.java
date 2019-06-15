@@ -2,14 +2,11 @@ package com.engine.oms.model;
 
 import static com.engine.oms.util.Constant.TABLE_ORDER;
 
-import com.engine.oms.util.Constant;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,8 +28,7 @@ import lombok.ToString;
 public class Order {
     @Column(name = "ID")
     @Id
-    @SequenceGenerator(name = Constant.TABLE_ORDER + "_SEQ", sequenceName = Constant.TABLE_ORDER + "_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = Constant.TABLE_ORDER + "_SEQ")
+    @GeneratedValue
     private Long id;
 
     @Column(name = "TOTAL_BILL")
@@ -41,8 +37,17 @@ public class Order {
     @Column(name = "CUSTOMER_ID")
     private Integer customerId;
     
+    @Column(name = "DELIVERY_TIME")
+    @Temporal(value = TemporalType.DATE)
+    private Date deliveryTime;
+    
+    @Column(name = "REMARKS")
+    private String remarks;
+    
+    @Column(name = "CUSTOMER_RATING")
+    private Integer customerRating;
+
     @Column(name = "ORDER_DATE")
     @Temporal(value = TemporalType.DATE)
     private Date orderDate;
-    
 }

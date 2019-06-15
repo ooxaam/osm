@@ -15,7 +15,7 @@
 		$('#orderContainer').jtable({
 			title : 'Orders',
 			actions : {
-				listAction : 'OrderController/orders'
+				listAction : 'orders'
 			},
 			fields : {
 				id : {
@@ -57,7 +57,7 @@
                                     {
                                         title: orderData.record.id + ' - Order Details',
                                         actions: {
-                                            listAction: 'OrderDetailsController/orderDetails/' + orderData.record.id
+                                            listAction: 'orderDetails/' + orderData.record.id
                                         },
                                         fields: {
                                             id: {

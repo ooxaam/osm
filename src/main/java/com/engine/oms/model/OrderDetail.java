@@ -2,13 +2,10 @@ package com.engine.oms.model;
 
 import static com.engine.oms.util.Constant.TABLE_ORDER_DETAIL;
 
-import com.engine.oms.util.Constant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +25,7 @@ import lombok.ToString;
 public class OrderDetail {
     @Column(name = "ID")
     @Id
-    @SequenceGenerator(name = Constant.TABLE_ORDER_DETAIL + "_SEQ", sequenceName = Constant.TABLE_ORDER_DETAIL + "_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = Constant.TABLE_ORDER_DETAIL + "_SEQ")
+    @GeneratedValue
     private Long id;
 
     @Column(name = "ORDER_ID")

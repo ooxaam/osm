@@ -2,13 +2,10 @@ package com.engine.oms.model;
 
 import static com.engine.oms.util.Constant.TABLE_CATEGORY;
 
-import com.engine.oms.util.Constant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,15 +15,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = TABLE_CATEGORY)
 public class Category {
-    @Column(name = "id")
+    @Column(name = "ID")
     @Id
-    @SequenceGenerator(name = Constant.TABLE_CATEGORY + "_SEQ", sequenceName = Constant.TABLE_CATEGORY + "_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = Constant.TABLE_CATEGORY + "_SEQ")
+    @GeneratedValue
     private Long id;
   
-    @Column(name = "title")
+    @Column(name = "TITLE")
     private String title;
     
-    @Column(name = "active", length = 1)
+    @Column(name = "ACTIVE", length = 1)
     private String active;
 }

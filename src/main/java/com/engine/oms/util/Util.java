@@ -23,5 +23,4 @@ public final class Util {
 
         return new GsonBuilder().setPrettyPrinting().create().toJson(response);
     }
-    
 }
